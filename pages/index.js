@@ -6,6 +6,7 @@ import Shorturl from '../components/shorturl';
 
 export default function Home() {
   const [url, setLongUrl] = useState('');
+  const [result, setResult] = useState("");
 
   const handleInputChange = (e) => {
     setLongUrl(e.target.value);
@@ -20,6 +21,32 @@ export default function Home() {
     getShortURL(url)
 
   };
+
+  async function getShortURL(url){
+    try {
+      const response = await fetch('http://localhost:3005/urls/generateUrl', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url }),
+      });
+  
+      if (response.ok) {
+        console.log('POST request successful');
+        const result = await response.json();
+        console.log(result)
+        setResult(result.shortURL)
+      } else {
+        console.log('POST request failed');
+        // Handle the error if needed
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+      // Handle the error if needed
+    }
+  
+  }
 
   return (
     <>
@@ -36,18 +63,15 @@ export default function Home() {
               <label htmlFor="URL" className='text-4xl mx-auto h-10 w-auto '>Smalli</label>
               <div className="mb-3 pt-5">
                 <input type="text" placeholder="Add Long URL" onChange={handleInputChange} 
-                className="px-3 py-4 placeholder-slate-500 text-slate-900 relative bg-white rounded text-base border-0 shadow outline-none focus:outline-none focus:ring w-full" />
+                className="px-3 py-4 placeholder-slate-500 text-slate-900 relative bg-white rounded text-base border-2 shadow outline-none focus:outline-none focus:ring w-full" />
               </div>
 
               <button className="bg-blue-500 hover:bg-blue-700 active:bg-blue-900 text-white font-bold 
-                py-2 px-4 rounded mx-auto w-auto mt-5" onClick={handleSubmit}>
+                py-2 px-4 rounded mx-auto w-auto mt-5 " onClick={handleSubmit}>
                 Smalli It
               </button>
-              <Shorturl/>
+              <Shorturl url={result}/>
             </div>
-
-           
-
           </div>
         </main>
       </div>
@@ -55,26 +79,4 @@ export default function Home() {
   )
 }
 
-async function getShortURL(url){
-  try {
-    const response = await fetch('http://localhost:3005/urls/generateUrl', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ url }),
-    });
 
-    if (response.ok) {
-      console.log('POST request successful');
-      // Handle the response from the API if needed
-    } else {
-      console.log('POST request failed');
-      // Handle the error if needed
-    }
-  } catch (error) {
-    console.error('An error occurred:', error);
-    // Handle the error if needed
-  }
-
-}
