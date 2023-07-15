@@ -41,7 +41,7 @@ export default function Navbar() {
                     <img
                       className="block h-8 w-auto lg:hidden"
                       src="/logo.png"
-                      alt="Your Company"
+                      alt="Your Company" 
                     />
                   </Link>
                   <Link href='/'>
@@ -133,11 +133,11 @@ export default function Navbar() {
                 </Menu>
               </div>
               ) : (
-                <a
+                <Link
                         href='/signIn'
                         className= 'bg-transparent text-white text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'>
                         Log In
-                </a>
+                </Link>
               )}
             </div>
           </div>

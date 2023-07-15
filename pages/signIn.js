@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { setCookie } from 'cookies-next';
 import Router from 'next/router'
 import { AuthContext } from '../stores/AuthContext';
+import Link from 'next/link';
 
 export default function SignIn() {
 
@@ -136,9 +137,9 @@ export default function SignIn() {
 
           <div className="mt-10 text-center text-sm text-gray-500">
             Not a member?{' '}
-            <a href="/signUp" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            <Link href="/signUp" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               Sign Up
-            </a>
+            </Link>
           </div>
         </div>
       </div>
