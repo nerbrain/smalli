@@ -1,4 +1,11 @@
+import { getCookie } from "cookies-next"
+import UrlList from "../components/urllist"
+import UrlList2 from "../components/urlList2";
+
 export default function Dashboard() {
+
+  // const token = getCookie("jwt");
+  // console.log(token)
   return (
     <>
       <div className="min-h-full">
@@ -9,7 +16,8 @@ export default function Dashboard() {
         </header>
         <main>
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-            {/* Your content */}
+            {/* <UrlList></UrlList> */}
+            <UrlList2></UrlList2>
             
             </div>
         </main>

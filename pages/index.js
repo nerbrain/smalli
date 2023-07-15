@@ -4,6 +4,8 @@ import styles from '../styles/Home.module.css'
 import { useState } from 'react';
 import Shorturl from '../components/shorturl';
 
+const validUrl = require('valid-url');
+
 export default function Home() {
   const [url, setLongUrl] = useState('');
   const [result, setResult] = useState("");
@@ -23,29 +25,33 @@ export default function Home() {
   };
 
   async function getShortURL(url){
-    try {
-      const response = await fetch('http://localhost:3005/urls/generateUrl', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ url }),
-      });
-  
-      if (response.ok) {
-        console.log('POST request successful');
-        const result = await response.json();
-        console.log(result)
-        setResult(result.shortURL)
-      } else {
-        console.log('POST request failed');
+    if (validUrl.isWebUri(url)){
+      console.log('Looks like an URI');
+      try {
+        const response = await fetch('http://localhost:3005/urls/generateUrl', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ url }),
+        });
+    
+        if (response.ok) {
+          console.log('POST request successful');
+          const result = await response.json();
+          console.log(result)
+          setResult(result.shortURL)
+        } else {
+          console.log('POST request failed');
+          // Handle the error if needed
+        }
+      } catch (error) {
+        console.log('An error occurred:', error);
         // Handle the error if needed
       }
-    } catch (error) {
-      console.error('An error occurred:', error);
-      // Handle the error if needed
-    }
-  
+  } else {
+      console.log('Not a URI');
+  }
   }
 
   return (
