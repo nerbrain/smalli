@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import Layout from '../components/Layout'
+import Layout from '../components/layout.js'
 import { AuthContext, AuthProvider } from '../stores/AuthContext'
 
 function MyApp({ Component, pageProps }) {
