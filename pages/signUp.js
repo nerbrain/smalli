@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Router from 'next/router'
+import base_url from '../url';
 
 export default function SignUp() {
 
@@ -36,7 +37,7 @@ export default function SignUp() {
 
     async function signUp(formData) {
         try {
-            const response = await fetch('http://localhost:3005/user/signUp', {
+            const response = await fetch(base_url+'user/signUp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

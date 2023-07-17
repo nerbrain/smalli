@@ -3,6 +3,7 @@ import { setCookie } from 'cookies-next';
 import Router from 'next/router'
 import { AuthContext } from '../stores/AuthContext';
 import Link from 'next/link';
+import base_url from '../url';
 
 export default function SignIn() {
 
@@ -38,7 +39,7 @@ export default function SignIn() {
 
   async function signIn(formData) {
     try {
-      const response = await fetch('http://localhost:3005/user/signIn', {
+      const response = await fetch(base_url+'/user/signIn', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
