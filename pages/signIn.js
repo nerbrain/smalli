@@ -39,7 +39,7 @@ export default function SignIn() {
 
   async function signIn(formData) {
     try {
-      const response = await fetch(base_url+'/user/signIn', {
+      const response = await fetch(base_url+'user/signIn', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

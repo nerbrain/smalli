@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import base_url from '../url'
+import base_url from '../../url'
 import { redirect } from 'next/dist/server/api-utils';
 import { useEffect } from 'react';
 

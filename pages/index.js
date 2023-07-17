@@ -3,6 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useState } from 'react';
 import Shorturl from '../components/shorturl';
+import base_url from '../url';
 
 const validUrl = require('valid-url');
 
@@ -28,7 +29,7 @@ export default function Home() {
     if (validUrl.isWebUri(url)){
       console.log('Looks like an URI');
       try {
-        const response = await fetch('http://localhost:3005/urls/generateUrl', {
+        const response = await fetch(base_url+'urls/generateUrl', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

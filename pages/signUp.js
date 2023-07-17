@@ -51,7 +51,8 @@ export default function SignUp() {
 
                 if(result == 200){
                     //animation when successfull
-                    Router.push("/signin");
+                    Router.push("/signIn");
+                    // console.log("works")
                 }
 
                 console.log(result)
