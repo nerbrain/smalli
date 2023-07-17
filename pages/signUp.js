@@ -38,6 +38,7 @@ export default function SignUp() {
     async function signUp(formData) {
         try {
             const response = await fetch(base_url+'user/signUp', {
+                mode:'no-cors',
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

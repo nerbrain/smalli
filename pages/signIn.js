@@ -40,9 +40,11 @@ export default function SignIn() {
   async function signIn(formData) {
     try {
       const response = await fetch(base_url+'user/signIn', {
+        mode: 'no-cors',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': "*"
         },
         body: JSON.stringify({ formData }),
       });
